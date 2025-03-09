@@ -1,0 +1,81 @@
+/* Job Listings Section */
+.job-listings {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  .job-listings h2 {
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .job-card {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .job-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .job-card h3 {
+    font-size: 20px;
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  
+  .job-card p {
+    font-size: 14px;
+    color: #555;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .tab-button {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tab-button.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+  }
+  
+  .tab-button:hover {
+    background-color: #0056b3;
+    color: #fff;
+  }
+  
+  .iframe-container {
+    margin-top: 20px;
+  }
+  
+  .resumebtn {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .resumebtn:hover {
+    background-color: #0056b3;
+  }

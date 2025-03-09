@@ -1,0 +1,17 @@
+<nav class="navbar">
+    <div class="navbar-container">
+      <a class="navbar-logo" href="/dashboard">Advanced Job Search Portal</a>
+      <ul class="navbar-menu">
+        <li class="mt-2"*ngIf="isLoggedIn"><a href="/dashboard">Dashboard</a></li>
+        <li class="mt-2" *ngIf="!isLoggedIn"><a href="/login">Login</a></li>
+        <li class="mt-2" *ngIf="!isLoggedIn"><a href="/register">Register</a></li>
+        <li class="mt-2" *ngIf="isLoggedIn"><a href="/jobs">Job Listings</a></li>
+        <li class="mt-2" *ngIf="isLoggedIn"><a href="/resumebuilder">Resume Builder</a></li>
+        <li class="mt-2" *ngIf="isLoggedIn"><a href="/profile">Profile</a></li>
+        <li *ngIf="isLoggedIn">
+          <button (click)="onLogout()" class="logout-btn">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  

@@ -1,0 +1,146 @@
+/* Dashboard Container */
+.dashboard-container {
+    background-color: #f1f3f5;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Dashboard Header Section */
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.dashboard-header h1 {
+    font-size: 40px;
+    color: #343a40;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.dashboard-header p {
+    font-size: 18px;
+    color: #6c757d;
+    line-height: 1.5;
+}
+
+.dashboard-header p strong {
+    color: #007bff;
+}
+
+/* Section Styling */
+.section {
+    margin-bottom: 40px;
+}
+
+/* Section Heading */
+h2 {
+    font-size: 30px;
+    color: #495057;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Card Styling */
+.details-card, .collaboration-list li, .data-abstraction-list li {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Card Content */
+.details-card p, .collaboration-list li p, .data-abstraction-list li p {
+    font-size: 16px;
+    color: #495057;
+    line-height: 1.6;
+}
+
+/* Card Headers */
+.details-card strong, .collaboration-list li strong, .data-abstraction-list li strong {
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Collaboration List */
+.collaboration-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.collaboration-list li {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Data Abstraction List */
+.data-abstraction-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.data-abstraction-list li {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Not Logged In Section */
+.not-logged-in {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.not-logged-in h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+.not-logged-in a {
+    color: #007bff;
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+/* Hover Effects for Cards */
+.details-card:hover, .collaboration-list li:hover, .data-abstraction-list li:hover {
+    transform: translateY(-5px);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Button Styling */
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.developer-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 3%;
+    text-align: left !important;
+}
+
+.professor {
+    float: left;
+    margin: -19px 2px 0px 32px;
+}

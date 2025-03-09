@@ -1,0 +1,25 @@
+.common-container {
+    padding: 30px;
+    background-color: #f8f9fa;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .common-container {
+      padding: 20px;
+    }
+  
+    .user-profile, .job-listings, .resume-generation {
+      padding: 15px;
+    }
+  
+    .job-card h3 {
+      font-size: 18px;
+    }
+  
+    select, button {
+      font-size: 14px;
+    }
+  }

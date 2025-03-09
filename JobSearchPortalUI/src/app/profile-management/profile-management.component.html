@@ -1,0 +1,76 @@
+<div class="common-container" *ngIf="loggedIn; else notLoggedIn">
+    <div class="user-profile" style="text-align: left;">
+      <h1 style="text-align: center !important;">Welcome, {{ user.username | titlecase}}!!</h1>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Experience Level:</strong> {{ user.experienceLevel }}</p>
+      <p><strong>Experience Summary:</strong> {{ user.experience }}</p>
+      <p><strong>Preferred Job Type:</strong> {{ user.preferredJobType }}</p>
+      <p><strong>Skills:</strong> {{ user.skills?.join(', ') }}</p>
+      <p><strong>Higher Education:</strong> {{ user.education}}</p>
+      <p><strong>Certifications:</strong> {{ user.certifications?.join(', ') }}</p>
+  
+      <button class="btn btn-primary mx-4" (click)="isUpdating = !isUpdating">
+        {{ isUpdating ? 'Cancel Update' : 'Update Profile' }}
+      </button>
+      <button class="btn btn-danger" (click)="onDeleteProfile()">Delete Profile</button>
+    </div>
+  
+    <!-- Update Form -->
+    <div *ngIf="isUpdating">
+      <h2>Update Profile</h2>
+      <form [formGroup]="updateForm" (ngSubmit)="onUpdateProfile()">
+        <div class="form-group mt-3">
+          <label for="email">Email:</label>
+          <input id="email" class="form-control mt-2" formControlName="email" type="email" />
+        </div>
+  
+        <div class="form-group mt-3">
+          <label for="skills">Skills (comma-separated):</label>
+          <input id="skills" class="form-control mt-2" formControlName="skills" />
+        </div>
+  
+        <div class="form-group mt-3">
+          <label for="experienceLevel">Experience Level:</label>
+          <select id="experienceLevel" class="form-control mt-2" formControlName="experienceLevel">
+            <option value="Entry">Entry</option>
+            <option value="Mid">Mid</option>
+            <option value="Senior">Senior</option>
+          </select>
+        </div>
+
+        <div class="form-group mt-3">
+          <label for="experience">Experience Summary:</label>
+          <input id="experience" class="form-control mt-2" formControlName="experience" />
+        </div>
+  
+        <div class="form-group mt-3">
+          <label for="preferredJobType">Preferred Job Type:</label>
+          <select id="preferredJobType" class="form-control mt-2" formControlName="preferredJobType">
+            <option value="Full-time">Full-time</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Freelance">Freelance</option>
+          </select>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="education">Higher Education:</label>
+            <input id="education" class="form-control mt-2" formControlName="education" />
+        </div>
+
+        <div class="form-group mt-3">
+          <label for="certifications">Certifications (comma-separated):</label>
+          <input id="certifications" class="form-control mt-2" formControlName="certifications" />
+        </div>
+  
+        <button class="btn btn-success mt-3" type="submit" [disabled]="!updateForm.valid">Save Changes</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Not Logged In -->
+  <ng-template #notLoggedIn>
+    <div class="common-container">
+      <h1>You are not logged in.</h1>
+      <a routerLink="/login">Login here</a>
+    </div>
+  </ng-template>

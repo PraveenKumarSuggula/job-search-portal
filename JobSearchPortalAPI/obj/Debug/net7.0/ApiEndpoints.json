@@ -1,0 +1,198 @@
+[
+  {
+    "ContainingType": "JobSearchPortalAPI.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginRequest",
+        "Type": "JobSearchPortalAPI.Models.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JobSearchPortalAPI.Controllers.AuthController",
+    "Method": "Register",
+    "RelativePath": "api/auth/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registerRequest",
+        "Type": "JobSearchPortalAPI.Models.RegisterRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JobSearchPortalAPI.Controllers.JobsController",
+    "Method": "GetJobs",
+    "RelativePath": "api/jobs",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JobSearchPortalAPI.Controllers.JobsController",
+    "Method": "CreateJob",
+    "RelativePath": "api/jobs",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newJob",
+        "Type": "JobSearchPortalAPI.Models.Job",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JobSearchPortalAPI.Controllers.JobsController",
+    "Method": "UpdateJob",
+    "RelativePath": "api/jobs/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedJob",
+        "Type": "JobSearchPortalAPI.Models.Job",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JobSearchPortalAPI.Controllers.JobsController",
+    "Method": "DeleteJob",
+    "RelativePath": "api/jobs/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JobSearchPortalAPI.Controllers.JobsController",
+    "Method": "GetLinkedInJobs",
+    "RelativePath": "api/jobs/linkedin/jobs",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "accessToken",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JobSearchPortalAPI.Controllers.JobsController",
+    "Method": "GetAccessToken",
+    "RelativePath": "api/jobs/linkedin/token",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JobSearchPortalAPI.Controllers.ProfileController",
+    "Method": "GetUserProfile",
+    "RelativePath": "api/profile/{username}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "username",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JobSearchPortalAPI.Controllers.ProfileController",
+    "Method": "UpdateUserProfile",
+    "RelativePath": "api/profile/{username}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "username",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedUser",
+        "Type": "JobSearchPortalAPI.Models.UserProfileUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JobSearchPortalAPI.Controllers.ProfileController",
+    "Method": "DeleteUserProfile",
+    "RelativePath": "api/profile/{username}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "username",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JobSearchPortalAPI.Controllers.ResumeController",
+    "Method": "GenerateResume",
+    "RelativePath": "api/resume/generate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "resumeRequest",
+        "Type": "JobSearchPortalAPI.Models.ResumeRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

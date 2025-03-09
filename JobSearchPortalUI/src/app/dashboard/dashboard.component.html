@@ -1,0 +1,80 @@
+<div class="dashboard-container">
+    <!-- Dashboard Header Section -->
+    <div class="dashboard-header developer-list">
+      <h1>Welcome to Our Job Search Portal</h1>
+      <p class="text-start mt-3"><strong>Job Seeker's Platform:</strong> Our application simplifies the job search process by integrating with top job searching boards. Users can easily find relevant job opportunities based on
+         their experience and skills, all in one place. As soon as users find a job that fits their profile, they can generate a tailored resume based on their experience, skills, and the job description, improving their chances of landing the job.</p>
+      <p class="text-start"><strong>JobSeeker Hub</strong> is developed by the following team members to provide a centralized platform for job seekers, helping them to easily find jobs and generate personalized resumes for job applications:</p>
+      <ul class="mt-0">
+        <li><b>Praveen Kumar Suggula</b> – PraveenKumarSuggula@my.unt.edu</li>
+        <li><b>Harsha Vardhan Sai Golla</b> – HarshaVardhanSaiGolla@my.unt.edu</li>
+        <li><b>Chitiprolu Aravind</b> – AravindChitiprolu@my.unt.edu</li>
+        <li><b>Patibandla Dinesh Kumar</b> – DineshKumarPatibandla@my.unt.edu</li>
+      </ul>
+      <p class="professor"><strong>Supervised by:</strong> <b style="color: #ff4d4a;"> Professor Dr. Haili Wang</b></p>
+    </div>
+
+    <!-- Application Details Section -->
+    <div class="section">
+      <h2>Application Details</h2>
+      <div class="details-card">
+        <p><strong>App Name:</strong> {{ applicationDetails.appName }}</p>
+        <p><strong>Description:</strong> {{ applicationDetails.description }}</p>
+        <p><strong>Version:</strong> {{ applicationDetails.version }}</p>
+        <p><strong>Status:</strong> {{ applicationDetails.status }}</p>
+      </div>
+    </div>
+  
+    <!-- Collaborated Applications Section -->
+    <div class="section">
+      <h2>Collaborated Applications</h2>
+      <div class="collaboration-list">
+        <ul>
+          <li *ngFor="let app of collaborationDetails">
+            <p><strong>App Name:</strong> {{ app.name }}</p>
+            <p><strong>Collaboration Type:</strong> {{ app.collaborationType }}</p>
+            <p><strong>Status:</strong> {{ app.status }}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  
+    <!-- Other Information Section -->
+    <div class="section">
+      <h2>Other Information</h2>
+      <div class="details-card">
+        <p><strong>Updates:</strong> {{ otherInfo.updates }}</p>
+        <p><strong>Upcoming Features:</strong> {{ otherInfo.upcomingFeatures }}</p>
+      </div>
+    </div>
+  
+    <!-- Project Overview Section -->
+    <div class="section">
+      <h2>Project Overview</h2>
+      <div class="details-card">
+        <p>{{ projectOverview }}</p>
+      </div>
+    </div>
+  
+    <!-- Data Abstraction Section -->
+    <div class="section">
+      <h2>Data Abstraction</h2>
+      <div class="data-abstraction-list">
+        <ul>
+          <li *ngFor="let data of dataAbstraction">
+            <p><strong>Source:</strong> {{ data.source }}</p>
+            <p><strong>Description:</strong> {{ data.description }}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Not Logged In Template -->
+  <!-- <ng-template #notLoggedIn>
+    <div class="not-logged-in">
+      <h1>You are not logged in.</h1>
+      <a routerLink="/login">Login here</a>
+    </div>
+  </ng-template> -->
+  
