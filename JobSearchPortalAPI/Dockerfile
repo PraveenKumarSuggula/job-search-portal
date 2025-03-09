@@ -1,7 +1,6 @@
-# Use official ASP.NET runtime
+# Use official .NET runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
-EXPOSE 8080  # Render requires port 8080
 
 # Build Stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
