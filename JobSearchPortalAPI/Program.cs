@@ -88,10 +88,14 @@ app.UseAuthentication();  // Make sure authentication is enabled
 app.UseAuthorization();
 
 // Configure Swagger for development environment
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction()) 
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+        c.RoutePrefix = "swagger"; // Serve Swagger at /swagger
+    });
 }
 
 app.UseHttpsRedirection();
