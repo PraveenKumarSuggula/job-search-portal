@@ -1,0 +1,113 @@
+﻿# **Compiled Binaries and Build Artifacts**
+bin/
+obj/
+out/
+*.dll
+*.exe
+*.so
+*.dylib
+*.pdb
+*.app/
+
+# **User-Specific Files**
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.vs/
+.vscode/
+.idea/
+
+# **Packages and Dependencies**
+packages/
+*.nupkg
+project.lock.json
+project.assets.json
+
+# **Logs and Database Files**
+*.log
+logs/
+sql/
+*.mdf
+*.ldf
+
+# **DotNet Tools**
+.dotnet/
+.local/
+.nuget/
+
+# **Environment and Secrets**
+.env
+secrets.json
+appsettings.Development.json
+appsettings.Local.json
+
+# **Generated Files and Reports**
+Generated_Code/
+Coverage/
+coverage/
+TestResults/
+*.snap
+*.gen.cs
+*.gen.ts
+
+# **Node.js Dependencies (If Using Frontend)**
+node_modules/
+npm-debug.log
+yarn.lock
+pnpm-lock.yaml
+
+# **Docker & Kubernetes**
+.dockerignore
+docker-compose.override.yml
+*.dockerfile
+*.k8s.yaml
+
+# **JetBrains Rider & ReSharper**
+*.idea/
+*.dotCover
+*.dotTrace
+*.dotMemory
+*_CodeCoverage/
+
+# **Visual Studio Code Workspace Settings**
+.vscode/
+history/
+*.code-workspace
+
+# **Mac & Linux Files**
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# **Windows Files**
+Thumbs.db
+ehthumbs.db
+$RECYCLE.BIN/
+
+# **Other OS-Specific Files**
+*.bak
+*.swp
+*.swn
+*.swo
+*.orig
+/JobSearchPortalAPI/.vs/JobSearchPortalAPI/v17/.suo
+/JobSearchPortalAPI/.vs/JobSearchPortalAPI/v17/.futdcache.v2
+/JobSearchPortalAPI/.vs/JobSearchPortalAPI/FileContentIndex/1f4fa05b-0fe0-41cd-84f3-9aae31a17780.vsidx
+/JobSearchPortalAPI/.vs/JobSearchPortalAPI/DesignTimeBuild/.dtbcache.v2
+/JobSearchPortalAPI/obj/
+/JobSearchPortalAPI/obj/Debug/net7.0/ref/JobSearchPortalAPI.dll
+/JobSearchPortalAPI/obj/Debug/net7.0/JobSearchPortalAPI.AssemblyInfoInputs.cache
+/JobSearchPortalAPI/obj/Debug/net7.0/JobSearchPortalAPI.csproj.CoreCompileInputs.cache
+/JobSearchPortalAPI/obj/Debug/net7.0/JobSearchPortalAPI.assets.cache
+/JobSearchPortalAPI/obj/Debug/net7.0/JobSearchPortalAPI.AssemblyInfo.cs
+/JobSearchPortalAPI/obj/Debug/net7.0/JobSearchPortalAPI.csproj.AssemblyReference.cache
+/JobSearchPortalAPI/obj/project.assets.json
+/JobSearchPortalAPI/obj/Debug/net7.0/JobSearchPortalAPI.pdb
+/JobSearchPortalAPI/obj/Debug/net7.0/JobSearchPortalAPI.csproj.FileListAbsolute.txt
+/JobSearchPortalAPI/obj/Debug/net7.0/apphost.exe
+/JobSearchPortalAPI/obj/Debug/net7.0/JobSearchPortalAPI.dll
+/JobSearchPortalAPI/obj/project.nuget.cache
+/JobSearchPortalAPI/obj/JobSearchPortalAPI.csproj.nuget.dgspec.json
+/JobSearchPortalAPI/obj/Debug/net7.0/refint/JobSearchPortalAPI.dll
+/JobSearchPortalAPI/appsettings.Development.json
