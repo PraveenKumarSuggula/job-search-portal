@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment'; 
 
 // Models for requests and responses
 export interface UserProfileUpdateDto {
@@ -29,7 +30,7 @@ export interface UserProfile {
   providedIn: 'root',
 })
 export class ProfileService {
-  private baseUrl = 'https://localhost:44386/api/profile';
+  private baseUrl = environment.apiBaseUrl + '/profile';
 
   constructor(private http: HttpClient) {}
 

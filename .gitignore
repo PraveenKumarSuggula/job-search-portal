@@ -111,3 +111,4 @@ $RECYCLE.BIN/
 /JobSearchPortalAPI/obj/JobSearchPortalAPI.csproj.nuget.dgspec.json
 /JobSearchPortalAPI/obj/Debug/net7.0/refint/JobSearchPortalAPI.dll
 /JobSearchPortalAPI/appsettings.Development.json
+.vercel
