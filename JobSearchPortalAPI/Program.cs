@@ -1,15 +1,22 @@
-using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication.OAuth;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Explicitly bind environment variables to configuration
+builder.Configuration.AddEnvironmentVariables();
+
+// Manually override appsettings.json values with environment variables
+var openAiApiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY") ??
+                   builder.Configuration["OpenAISetting:APIKey"];
+
+var linkedInClientId = Environment.GetEnvironmentVariable("LINKEDIN_CLIENT_ID") ??
+                        builder.Configuration["LinkedIn:ClientId"];
+
+var linkedInClientSecret = Environment.GetEnvironmentVariable("LINKEDIN_CLIENT_SECRET") ??
+                            builder.Configuration["LinkedIn:ClientSecret"];
+
 builder.Services.AddControllers();
 builder.Services.AddHttpClient();
 builder.Services.AddEndpointsApiExplorer();
@@ -33,8 +40,8 @@ builder.Services.AddAuthentication(options =>
 .AddCookie()
 .AddOAuth("LinkedIn", options =>
 {
-    options.ClientId = builder.Configuration["LinkedIn:ClientId"];
-    options.ClientSecret = builder.Configuration["LinkedIn:ClientSecret"];
+    options.ClientId = linkedInClientId;
+    options.ClientSecret = linkedInClientSecret;
     options.CallbackPath = new PathString("/signin-linkedin");
 
     options.AuthorizationEndpoint = "https://www.linkedin.com/oauth/v2/authorization";
@@ -70,16 +77,6 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
-// Retrieve secrets from environment variables
-var openAiApiKey = builder.Configuration["OpenAISetting:APIKey"] ?? 
-                   Environment.GetEnvironmentVariable("OPENAI_API_KEY");
-
-var linkedInClientId = builder.Configuration["LinkedIn:ClientId"] ?? 
-                        Environment.GetEnvironmentVariable("LINKEDIN_CLIENT_ID");
-
-var linkedInClientSecret = builder.Configuration["LinkedIn:ClientSecret"] ?? 
-                            Environment.GetEnvironmentVariable("LINKEDIN_CLIENT_SECRET");
-                            
 // Use CORS policy
 app.UseCors("AllowOrigin");
 
@@ -88,7 +85,7 @@ app.UseAuthentication();  // Make sure authentication is enabled
 app.UseAuthorization();
 
 // Configure Swagger for development environment
-if (app.Environment.IsDevelopment() || app.Environment.IsProduction()) 
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI(c =>
