@@ -58,3 +58,7 @@ jobs:
           slot-name: 'Production'
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E60F987AAE0E4B50B6585AE5FC531682 }}
+      
+      - name: Set Environment Variables in Azure
+        run: |
+          az webapp config appsettings set --resource-group MyResourceGroup --name job-search-portal-api --settings OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} LINKEDIN_CLIENT_ID=${{ secrets.LINKEDIN_CLIENT_ID }} LINKEDIN_CLIENT_SECRET=${{ secrets.LINKEDIN_CLIENT_SECRET }}
