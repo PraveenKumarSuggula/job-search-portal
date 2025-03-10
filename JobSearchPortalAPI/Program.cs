@@ -17,6 +17,11 @@ var linkedInClientId = Environment.GetEnvironmentVariable("LINKEDIN_CLIENT_ID") 
 var linkedInClientSecret = Environment.GetEnvironmentVariable("LINKEDIN_CLIENT_SECRET") ??
                             builder.Configuration["LinkedIn:ClientSecret"];
 
+// Debugging: Print the environment variables to Azure logs (remove in production)
+Console.WriteLine($"OpenAI API Key: {openAiApiKey}");
+Console.WriteLine($"LinkedIn Client ID: {linkedInClientId}");
+Console.WriteLine($"LinkedIn Client Secret: {linkedInClientSecret}");
+
 builder.Services.AddControllers();
 builder.Services.AddHttpClient();
 builder.Services.AddEndpointsApiExplorer();
