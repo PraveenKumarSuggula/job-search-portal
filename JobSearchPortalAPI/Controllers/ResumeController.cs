@@ -1,8 +1,8 @@
-﻿using JobSearchPortalAPI.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
+using JobSearchPortalAPI.Models;
 
 namespace JobSearchPortalAPI.Controllers
 {
@@ -11,10 +11,24 @@ namespace JobSearchPortalAPI.Controllers
     public class ResumeController : ControllerBase
     {
         private readonly IConfiguration _configuration;
+        private readonly string _openAiApiKey;
+        private readonly string _openAiBaseUrl;
 
         public ResumeController(IConfiguration configuration)
         {
             _configuration = configuration;
+
+            // Retrieve environment variables first, fallback to appsettings.json
+            _openAiApiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY")
+                ?? _configuration["OpenAISetting:APIKey"];
+
+            _openAiBaseUrl = Environment.GetEnvironmentVariable("OPENAI_BASE_URL")
+                ?? _configuration["OpenAISetting:BaseUrl"]
+                ?? "https://api.openai.com/v1/chat/completions";
+
+            // Debugging to verify values in Azure logs
+            Console.WriteLine($"[DEBUG] Retrieved OPENAI_API_KEY: {_openAiApiKey}");
+            Console.WriteLine($"[DEBUG] Retrieved OPENAI_BASE_URL: {_openAiBaseUrl}");
         }
 
         [HttpPost("generate")]
@@ -25,16 +39,13 @@ namespace JobSearchPortalAPI.Controllers
                 return BadRequest("Invalid resume request payload.");
             }
 
-            var apiKey = _configuration.GetValue<string>("OpenAISetting:APIKey");
-            var baseUrl = _configuration.GetValue<string>("OpenAISetting:BaseUrl");
-
-            if (string.IsNullOrEmpty(apiKey) || string.IsNullOrEmpty(baseUrl))
+            if (string.IsNullOrEmpty(_openAiApiKey))
             {
-                return StatusCode(500, "OpenAI API configuration is missing.");
+                return StatusCode(500, "OpenAI API Key is missing from environment variables and appsettings.json.");
             }
 
             using var client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _openAiApiKey);
 
             var requestBody = new OpenAIRequestDto
             {
@@ -49,7 +60,14 @@ namespace JobSearchPortalAPI.Controllers
                     new OpenAIMessageRequestDto
                     {
                         Role = "user",
-                        Content = $"Generate a {{resumeRequest.Template}} resume based on the following details in ATS-friendly format: \r\nName: {{resumeRequest.Name}}, Experience Level: {{resumeRequest.ExperienceLevel}}, \r\nExperience: {{resumeRequest.Experience}}, Skills: {{string.Join(\", \", resumeRequest.Skills ?? new List<string>())}}, \r\nPreferred Job Type: {{resumeRequest.PreferredJobType}}, Education: {{resumeRequest.Education}}, \r\nCertifications: {{string.Join(\", \", resumeRequest.Certifications ?? new List<string>())}}, \r\nJob Requirements: {{resumeRequest.JobRequirements}}. \r\n\r\nThe output should ONLY contain a well-structured JSON object with these fields:\r\n- Name\r\n- Experiences (Array with Title, Company, Duration, Responsibilities)\r\n- ProfessionalSummary\r\n- Education (Object with Degree and Institution)\r\n- Certifications (Array of strings)\r\n- TechnicalSkills (Array of strings).\r\n"
+                        Content = $"Generate a {resumeRequest.Template} resume with these details: \n" +
+                                  $"Name: {resumeRequest.Name}, Experience Level: {resumeRequest.ExperienceLevel}, \n" +
+                                  $"Experience: {resumeRequest.Experience}, Skills: {string.Join(", ", resumeRequest.Skills ?? new List<string>())}, \n" +
+                                  $"Preferred Job Type: {resumeRequest.PreferredJobType}, Education: {resumeRequest.Education}, \n" +
+                                  $"Certifications: {string.Join(", ", resumeRequest.Certifications ?? new List<string>())}, \n" +
+                                  $"Job Requirements: {resumeRequest.JobRequirements}. \n\n" +
+                                  $"The output must be a structured JSON object with: Name, Experiences (array), " +
+                                  $"ProfessionalSummary, Education, Certifications, and TechnicalSkills."
                     }
                 },
                 Temperature = 0.7f,
@@ -63,13 +81,11 @@ namespace JobSearchPortalAPI.Controllers
                     Encoding.UTF8,
                     "application/json");
 
-                var response = await client.PostAsync(baseUrl, content);
-
+                var response = await client.PostAsync(_openAiBaseUrl, content);
                 var responseContent = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
                 {
-                    // Parse the JSON response into a structured DTO
                     var openAiResponse = JsonConvert.DeserializeObject<OpenAIResponseDto>(responseContent);
                     var generatedContent = openAiResponse?.choices?[0]?.message?.content;
 
@@ -77,7 +93,7 @@ namespace JobSearchPortalAPI.Controllers
                     {
                         var parsedJson = System.Text.Json.JsonSerializer.Deserialize<object>(generatedContent);
                         return Ok(new { message = "Resume generated successfully", resume = parsedJson });
-                                           }
+                    }
 
                     return StatusCode(500, "Failed to parse the generated resume.");
                 }
