@@ -1,0 +1,64 @@
+name: Build and deploy ASP.Net Core app to Azure Web App - job-search-portal-api
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: read # This is required for actions/checkout
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+
+      - name: Build with dotnet
+        run: |
+          cd JobSearchPortalAPI  # Ensure we're inside the correct project directory
+          dotnet build --configuration Release
+
+      - name: Publish .NET Core API
+        run: |
+          cd JobSearchPortalAPI  # Ensure we're inside the correct project directory
+          dotnet publish -c Release -o ${{ github.workspace }}/myapp
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v4
+        with:
+          name: .net-app
+          path: ${{ github.workspace }}/myapp
+
+  deploy:
+    runs-on: windows-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: .net-app
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'job-search-portal-api'
+          slot-name: 'Production'
+          package: .
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E60F987AAE0E4B50B6585AE5FC531682 }}
+      
+      - name: Set Environment Variables in Azure
+        run: |
+          az webapp config appsettings set --resource-group MyResourceGroup --name job-search-portal-api --settings OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} LINKEDIN_CLIENT_ID=${{ secrets.LINKEDIN_CLIENT_ID }} LINKEDIN_CLIENT_SECRET=${{ secrets.LINKEDIN_CLIENT_SECRET }}
